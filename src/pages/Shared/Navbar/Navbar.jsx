@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "../../../components/logo/Logo";
+import Logo from "../../../components/Logo/Logo";
 import { Link, NavLink } from "react-router";
 
 const Navbar = () => {
@@ -64,10 +64,14 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
         <div className="navbar-end gap-2">
-          <a className="btn">Sign In</a>
-          <a className="btn bg-primary hover:bg-secondary hover:text-white">
-            Sign Up
-          </a>
+          <Link to="/login">
+            <a className="btn">Sign In</a>
+          </Link>
+          <Link to="/register">
+            <a className="btn bg-primary hover:bg-secondary hover:text-white">
+              Sign Up
+            </a>
+          </Link>
         </div>
       </div>
     </div>

@@ -25,7 +25,7 @@ const Coverage = () => {
   };
 
   return (
-    <div className="w-10/12 mx-auto my-20">
+    <div className="w-10/12 mx-auto mb-20 mt-10 ">
       <h2 className="text-5xl text-primary text-center font-semibold mb-10">
         We are available in 64 districts
       </h2>

@@ -55,9 +55,7 @@ const Navbar = () => {
             </ul>
           </div>
           <a className="btn btn-ghost text-xl">
-            <Link to="/">
-              <Logo></Logo>
-            </Link>
+            <Logo></Logo>
           </a>
         </div>
         <div className="navbar-center hidden lg:flex">

@@ -1,6 +1,8 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import useAuth from "../../../Hooks/UseAuth";
+import { Link } from "react-router";
+import SocialLogin from "../SocialLogin/SocialLogin";
 
 const Register = () => {
   const {
@@ -24,12 +26,12 @@ const Register = () => {
 
   return (
     <div className="max-w-11/12 mx-auto p-8">
-      <form onSubmit={handleSubmit(handleRegistration)}>
-        <div className="card bg-base-100 w-full  shrink-0 shadow-2xl">
-          <div className="card-body">
+      <div className="card bg-base-100 w-full shrink-0 shadow-2xl">
+        <div className="card-body">
+          <form onSubmit={handleSubmit(handleRegistration)}>
             <fieldset className="fieldset">
               {/* email  */}
-              <label className="label">Email</label>
+              <label className="label font-bold text-[16px]">Email</label>
               <input
                 type="email"
                 {...register("email", { required: true })}
@@ -40,7 +42,7 @@ const Register = () => {
                 <p className="text-red-500 text-sm ">Email is required.</p>
               )}
               {/* password  */}
-              <label className="label">Password</label>
+              <label className="label font-bold text-[16px]">Password</label>
               <input
                 type="password"
                 {...register("password", {
@@ -66,13 +68,24 @@ const Register = () => {
                 </p>
               )}
               <div>
-                <a className="link link-hover">Forgot password?</a>
+                <a className="link link-hover text-[16px] text-gray-500">
+                  Forgot password?
+                </a>
               </div>
-              <button className="btn btn-neutral mt-4">Register</button>
+              <button className="btn btn-primary text-white mt-4">
+                Register
+              </button>
             </fieldset>
-          </div>
+            <p className="text-gray-400  my-3">
+              Already have an account?{" "}
+              <Link className="text-primary link-hover" to="/login">
+                Login
+              </Link>
+            </p>
+          </form>
+          <SocialLogin></SocialLogin>
         </div>
-      </form>
+      </div>
     </div>
   );
 };

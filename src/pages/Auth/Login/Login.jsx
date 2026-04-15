@@ -1,6 +1,8 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import useAuth from "../../../Hooks/UseAuth";
+import { Link } from "react-router";
+import SocialLogin from "../SocialLogin/SocialLogin";
 
 const Login = () => {
   const {
@@ -27,7 +29,7 @@ const Login = () => {
           <form onSubmit={handleSubmit(handleLogin)}>
             <fieldset className="fieldset">
               {/* email  */}
-              <label className="label">Email</label>
+              <label className="label font-bold text-[16px]">Email</label>
               <input
                 type="email"
                 {...register("email", { required: true })}
@@ -38,7 +40,7 @@ const Login = () => {
                 <p className="text-red-500 text-sm ">Email is required.</p>
               )}
               {/* password */}
-              <label className="label">Password</label>
+              <label className="label font-bold text-[16px]">Password</label>
               <input
                 type="password"
                 {...register("password", { required: true })}
@@ -60,11 +62,20 @@ const Login = () => {
                 </p>
               )}
               <div>
-                <a className="link link-hover">Forgot password?</a>
+                <a className="link link-hover text-[16px] text-gray-500">
+                  Forgot password?
+                </a>
               </div>
-              <button className="btn btn-neutral mt-4">Login</button>
+              <button className="btn btn-primary text-white mt-4">Login</button>
             </fieldset>
+            <p className="text-gray-400  my-3">
+              Don't have any account?{" "}
+              <Link className="text-primary link-hover" to="/register">
+                Register
+              </Link>
+            </p>
           </form>
+          <SocialLogin></SocialLogin>
         </div>
       </div>
     </div>

@@ -13,6 +13,7 @@ const AuthProvider = ({ children }) => {
   const signInUser = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
+
   const authInfo = { registerUser, signInUser };
   return <AuthContext value={authInfo}>{children}</AuthContext>;
 };

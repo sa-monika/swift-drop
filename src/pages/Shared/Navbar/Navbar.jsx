@@ -91,6 +91,7 @@ const Navbar = () => {
             </Link>
           </div>
         )}
+        {/* <Link className="btn btn-primary">Be a Rider</Link> */}
       </div>
     </div>
   );

@@ -28,8 +28,34 @@ const Register = () => {
     <div className="max-w-11/12 mx-auto p-8">
       <div className="card bg-base-100 w-full shrink-0 shadow-2xl">
         <div className="card-body">
+          <div className="text-center space-y-2">
+            <h1 className="text-4xl font-bold">Create an Account</h1>
+            <p className="text-[16px] text-gray-500">Register to SwiftDrop</p>
+          </div>
           <form onSubmit={handleSubmit(handleRegistration)}>
             <fieldset className="fieldset">
+              {/* photo  */}
+              <label className="label font-bold text-[16px]">Photo</label>
+              <input
+                type="file"
+                {...register("photo", { required: true })}
+                className="file-input w-full"
+                placeholder="Your Photo"
+              />
+              {errors.photo?.type === "required" && (
+                <p className="text-red-500 text-sm ">Photo is required.</p>
+              )}
+              {/* name  */}
+              <label className="label font-bold text-[16px]">Name</label>
+              <input
+                type="text"
+                {...register("name", { required: true })}
+                className="input w-full"
+                placeholder="Your Name"
+              />
+              {errors.name?.type === "required" && (
+                <p className="text-red-500 text-sm ">Name is required.</p>
+              )}
               {/* email  */}
               <label className="label font-bold text-[16px]">Email</label>
               <input

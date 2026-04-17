@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../../Hooks/UseAuth";
 import { Link } from "react-router";
 import SocialLogin from "../SocialLogin/SocialLogin";
+import axios from "axios";
 
 const Register = () => {
   const {
@@ -14,10 +15,19 @@ const Register = () => {
   const { registerUser } = useAuth();
 
   const handleRegistration = (data) => {
-    console.log(data);
+    // console.log(data);
+    const profileImg = data.photo[0];
     registerUser(data.email, data.password)
       .then((result) => {
         console.log(result.user);
+        // store the image and get the photo url
+        const formData = new FormData();
+        formData.append("image", profileImg);
+        const image_API_Url = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_host}`;
+        axios.post(image_API_Url, formData).then((res) => {
+          console.log("after image upload", res);
+        });
+        // update user profile
       })
       .catch((error) => {
         console.log(error);

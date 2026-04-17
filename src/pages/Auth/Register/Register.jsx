@@ -19,15 +19,20 @@ const Register = () => {
     const profileImg = data.photo[0];
     registerUser(data.email, data.password)
       .then((result) => {
-        console.log(result.user);
+        // console.log(result.user);
         // store the image and get the photo url
         const formData = new FormData();
         formData.append("image", profileImg);
         const image_API_Url = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_host}`;
         axios.post(image_API_Url, formData).then((res) => {
-          console.log("after image upload", res);
+          console.log("after image upload", res.data.data.url);
         });
         // update user profile
+
+        const userProfile = {
+          displayName: data.name,
+          photoURL: res.data.data.url,
+        };
       })
       .catch((error) => {
         console.log(error);

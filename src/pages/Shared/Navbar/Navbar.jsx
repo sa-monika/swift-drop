@@ -38,7 +38,7 @@ const Navbar = () => {
   );
   return (
     <div className="w-full">
-      <div className="navbar mx-auto shadow-sm ">
+      <div className="navbar shadow-sm ">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -91,7 +91,9 @@ const Navbar = () => {
             </Link>
           </div>
         )}
-        {/* <Link className="btn btn-primary">Be a Rider</Link> */}
+        <Link to="/rider" className="btn btn-primary">
+          Be a Rider
+        </Link>
       </div>
     </div>
   );

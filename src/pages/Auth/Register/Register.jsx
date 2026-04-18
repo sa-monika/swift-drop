@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import useAuth from "../../../Hooks/UseAuth";
-import { Link } from "react-router";
+import { Link, Navigate, useLocation, useNavigate } from "react-router";
 import SocialLogin from "../SocialLogin/SocialLogin";
 import axios from "axios";
 
@@ -13,6 +13,9 @@ const Register = () => {
   } = useForm();
 
   const { registerUser, updateUserProfile } = useAuth();
+
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const handleRegistration = (data) => {
     // console.log(data);
@@ -45,6 +48,7 @@ const Register = () => {
           updateUserProfile(userProfile)
             .then(() => {
               console.log("user profile updated");
+              navigate(location.state || "/");
             })
             .catch((error) => {
               console.log(error);
@@ -136,7 +140,11 @@ const Register = () => {
             </fieldset>
             <p className="text-gray-400  my-3">
               Already have an account?{" "}
-              <Link className="text-primary link-hover" to="/login">
+              <Link
+                className="text-primary link-hover"
+                to="/login"
+                state={location.state}
+              >
                 Login
               </Link>
             </p>

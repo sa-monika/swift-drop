@@ -75,7 +75,11 @@ const Login = () => {
             </fieldset>
             <p className="text-gray-400  my-3">
               Don't have any account?{" "}
-              <Link className="text-primary link-hover" to="/register">
+              <Link
+                className="text-primary link-hover"
+                to="/register"
+                state={location.state}
+              >
                 Register
               </Link>
             </p>

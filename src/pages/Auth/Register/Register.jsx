@@ -12,27 +12,44 @@ const Register = () => {
     formState: { errors },
   } = useForm();
 
-  const { registerUser } = useAuth();
+  const { registerUser, updateUserProfile } = useAuth();
 
   const handleRegistration = (data) => {
     // console.log(data);
+
     const profileImg = data.photo[0];
     registerUser(data.email, data.password)
       .then((result) => {
-        // console.log(result.user);
-        // store the image and get the photo url
+        console.log(result.user);
+
+        // store the image in formData
+
         const formData = new FormData();
         formData.append("image", profileImg);
+
+        // send the photo to store and get the url
+
         const image_API_Url = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_host}`;
+
         axios.post(image_API_Url, formData).then((res) => {
           console.log("after image upload", res.data.data.url);
-        });
-        // update user profile
 
-        const userProfile = {
-          displayName: data.name,
-          photoURL: res.data.data.url,
-        };
+          // update user profile to firebase
+
+          const userProfile = {
+            displayName: data.name,
+            photoURL: res.data.data.url,
+          };
+
+          // in firebase
+          updateUserProfile(userProfile)
+            .then(() => {
+              console.log("user profile updated");
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        });
       })
       .catch((error) => {
         console.log(error);

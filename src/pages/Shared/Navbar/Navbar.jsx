@@ -26,13 +26,7 @@ const Navbar = () => {
         <NavLink to="/about-us">About Us</NavLink>
       </li>
       <li>
-        <NavLink to="/pricing">Pricing</NavLink>
-      </li>
-      <li>
-        <NavLink to="/blog">Blog</NavLink>
-      </li>
-      <li>
-        <NavLink to="/contact">Contact</NavLink>
+        <NavLink to="/send-parcel">Send Parcel</NavLink>
       </li>
     </>
   );

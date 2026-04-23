@@ -86,6 +86,27 @@ const SendParcel = () => {
                 className="input w-full"
                 placeholder="Sender Name"
               />
+              {/* sender email  */}
+              <label className="label font-bold text-[16px] mt-4">
+                Sender Email
+              </label>
+              <input
+                type="email"
+                {...register("senderEmail", { required: true })}
+                className="input w-full"
+                placeholder="Sender Email"
+              />
+
+              {/* sender district  */}
+              <label className="label font-bold text-[16px] mt-4">
+                Sender District
+              </label>
+              <input
+                type="text"
+                {...register("senderDistrict", { required: true })}
+                className="input w-full"
+                placeholder="Sender District"
+              />
 
               {/* sender address  */}
               <label className="label font-bold text-[16px] mt-4">
@@ -97,16 +118,7 @@ const SendParcel = () => {
                 className="input w-full"
                 placeholder="Sender Address"
               />
-              {/* sender district  */}
-              <label className="label font-bold text-[16px] mt-4">
-                Sender District
-              </label>
-              <input
-                type="text"
-                {...register("senderDistrict", { required: true })}
-                className="input w-full"
-                placeholder="Sender District"
-              />
+
               {/* sender phone no.  */}
               <label className="label font-bold text-[16px] mt-4">
                 Sender Phone No.
@@ -155,6 +167,16 @@ const SendParcel = () => {
                 {...register("receiverName", { required: true })}
                 className="input w-full"
                 placeholder="Receiver Name"
+              />
+              {/* Receiver email */}
+              <label className="label font-bold text-[16px] mt-4">
+                Receiver Email
+              </label>
+              <input
+                type="email"
+                {...register("receiverEmail", { required: true })}
+                className="input w-full"
+                placeholder="Receiver Email"
               />
 
               {/* Receiver address  */}

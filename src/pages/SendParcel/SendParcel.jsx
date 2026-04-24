@@ -1,5 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useLoaderData } from "react-router";
 
 const SendParcel = () => {
   const {
@@ -7,6 +8,16 @@ const SendParcel = () => {
     register,
     formState: { errors },
   } = useForm();
+  const serviceCenters = useLoaderData();
+  const regionsDuplicate = serviceCenters.map((c) => c.region);
+  const regions = [...new Set(regionsDuplicate)];
+  console.log(regions);
+
+  const districtByRegion = (region) => {
+    const regionDistricts = serviceCenters.filter((c) => c.region === region);
+    const districts = regionDistricts.map((d) => d.district);
+    return districts;
+  };
 
   const handleSendParcel = (data) => {
     console.log(data);
@@ -97,7 +108,23 @@ const SendParcel = () => {
                 placeholder="Sender Email"
               />
 
+              {/* sender region */}
+
+              <fieldset className="fieldset mt-4">
+                <legend className="label  font-bold text-[16px]">
+                  Sender Region
+                </legend>
+                <select defaultValue="Pick a region" className="select w-full">
+                  <option disabled={true}>Pick a region</option>
+                  {regions.map((r, i) => (
+                    <option key={i} value={r}>
+                      {r}
+                    </option>
+                  ))}
+                </select>
+              </fieldset>
               {/* sender district  */}
+
               <label className="label font-bold text-[16px] mt-4">
                 Sender District
               </label>

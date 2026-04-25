@@ -6,12 +6,15 @@ const SendParcel = () => {
   const {
     handleSubmit,
     register,
+    watch,
     formState: { errors },
   } = useForm();
   const serviceCenters = useLoaderData();
   const regionsDuplicate = serviceCenters.map((c) => c.region);
   const regions = [...new Set(regionsDuplicate)];
   console.log(regions);
+
+  const senderRegion = watch("senderRegion");
 
   const districtByRegion = (region) => {
     const regionDistricts = serviceCenters.filter((c) => c.region === region);
@@ -114,7 +117,11 @@ const SendParcel = () => {
                 <legend className="label  font-bold text-[16px]">
                   Sender Region
                 </legend>
-                <select defaultValue="Pick a region" className="select w-full">
+                <select
+                  {...register("senderRegion")}
+                  defaultValue="Pick a region"
+                  className="select w-full"
+                >
                   <option disabled={true}>Pick a region</option>
                   {regions.map((r, i) => (
                     <option key={i} value={r}>

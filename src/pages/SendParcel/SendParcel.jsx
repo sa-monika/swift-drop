@@ -2,14 +2,19 @@ import React from "react";
 import { useForm, useWatch } from "react-hook-form";
 import { useLoaderData } from "react-router";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import useAuth from "../../Hooks/useAuth";
 
 const SendParcel = () => {
   const {
     handleSubmit,
     register,
     control,
-    formState: { errors },
+    // formState: { errors },
   } = useForm();
+
+  const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
   const serviceCenters = useLoaderData();
   const regionsDuplicate = serviceCenters.map((c) => c.region);
   const regions = [...new Set(regionsDuplicate)];
@@ -54,14 +59,20 @@ const SendParcel = () => {
       cancelButtonColor: "#d33",
       confirmButtonText: "I agree!",
     }).then((result) => {
-      if (result.isConfirmed)
-        Swal.fire({
-          title: "Deleted!",
-          text: "Your file has been deleted.",
-          icon: "success",
+      if (result.isConfirmed) {
+        // save the parcel info in database
+        axiosSecure.post("/parcels", data).then((res) => {
+          console.log(res.data);
         });
+        // Swal.fire({
+        //   title: "Deleted!",
+        //   text: "Your file has been deleted.",
+        //   icon: "success",
+        // });
+      }
     });
   };
+
   return (
     <div className="max-w-11/12 mx-auto">
       <h2 className="text-5xl font-semibold text-center text-primary my-10">
@@ -134,6 +145,7 @@ const SendParcel = () => {
               <input
                 type="text"
                 {...register("senderName", { required: true })}
+                defaultValue={user?.displayName}
                 className="input w-full"
                 placeholder="Sender Name"
               />
@@ -144,6 +156,7 @@ const SendParcel = () => {
               <input
                 type="email"
                 {...register("senderEmail", { required: true })}
+                defaultValue={user?.email}
                 className="input w-full"
                 placeholder="Sender Email"
               />

@@ -221,17 +221,7 @@ const SendParcel = () => {
                 className="input w-full"
                 placeholder="Sender Phone No."
               />
-              {/* Your district  */}
-              <label className="label font-bold text-[16px] mt-4">
-                Your District
-              </label>
 
-              <input
-                type="text"
-                {...register("yourDistrict", { required: true })}
-                className="input w-full"
-                placeholder="Your District"
-              />
               {/* pickup instructions  */}
               <label className="label font-bold text-[16px] mt-4">
                 Pickup Instructions
@@ -334,7 +324,7 @@ const SendParcel = () => {
                 placeholder="Receiver Phone No."
               />
               {/* Your district  */}
-              <label className="label font-bold text-[16px] mt-4">
+              {/* <label className="label font-bold text-[16px] mt-4">
                 Your District
               </label>
 
@@ -343,7 +333,7 @@ const SendParcel = () => {
                 {...register("yourDistrict", { required: true })}
                 className="input w-full"
                 placeholder="Your District"
-              />
+              /> */}
               {/* pickup instructions  */}
               <label className="label font-bold text-[16px] mt-4">
                 Pickup Instructions

@@ -28,8 +28,17 @@ const Navbar = () => {
       <li>
         <NavLink to="/send-parcel">Send Parcel</NavLink>
       </li>
+
+      {user && (
+        <>
+          <li>
+            <NavLink to="/dashboard/my-parcels">My Parcels</NavLink>
+          </li>
+        </>
+      )}
     </>
   );
+
   return (
     <div className="w-full">
       <div className="navbar shadow-sm ">

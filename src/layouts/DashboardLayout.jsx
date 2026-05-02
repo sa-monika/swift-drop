@@ -1,13 +1,16 @@
 import React from "react";
+
+import { CiDeliveryTruck } from "react-icons/ci";
+import { TbTruckDelivery } from "react-icons/tb";
 import { Link, NavLink, Outlet } from "react-router";
 
 const DashboardLayout = () => {
   return (
-    <div className="drawer lg:drawer-open">
+    <div className="drawer lg:drawer-open max-w-11/12 mx-auto mt-8 text-white">
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content">
         {/* Navbar */}
-        <nav className="navbar w-full bg-base-300">
+        <nav className="navbar w-full bg-secondary">
           <label
             htmlFor="my-drawer-4"
             aria-label="open sidebar"
@@ -41,7 +44,7 @@ const DashboardLayout = () => {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <div className="flex min-h-full flex-col items-start bg-base-200 is-drawer-close:w-14 is-drawer-open:w-64">
+        <div className="flex min-h-full flex-col items-start bg-secondary is-drawer-close:w-14 is-drawer-open:w-64">
           {/* Sidebar content here */}
           <ul className="menu w-full grow">
             {/* List item */}
@@ -70,7 +73,15 @@ const DashboardLayout = () => {
             </li>
             {/*our dashboard links  */}
             <li>
-              <NavLink to="/dashboard/my-parcels">My Parcels</NavLink>
+              <NavLink
+                to="/dashboard/my-parcels"
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip="MyParcels"
+              >
+                <TbTruckDelivery className="size-4.5" />
+
+                <span className="is-drawer-close:hidden">My Parcels</span>
+              </NavLink>
             </li>
             {/* List item */}
             <li>

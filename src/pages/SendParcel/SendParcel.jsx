@@ -48,6 +48,7 @@ const SendParcel = () => {
         cost = minCharge + extraCharge;
       }
     }
+    data.cost = cost;
     console.log("cost", cost);
 
     Swal.fire({

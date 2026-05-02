@@ -16,7 +16,36 @@ const MyParcels = () => {
   });
   return (
     <div>
-      <h2>My Parcels: {parcels.length}</h2>
+      <h2 className="text-primary text-4xl  font-semibold text-center my-5">
+        My Parcels : {parcels.length}
+      </h2>
+
+      <div className="overflow-x-auto">
+        <table className="table table-zebra">
+          {/* head */}
+          <thead>
+            <tr>
+              <th></th>
+              <th>Parcel Name</th>
+              <th>Cost</th>
+              <th>Payment Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {parcels.map((parcel, i) => {
+              <tr key={parcel._id}>
+                <th>{i + 1}</th>
+                <td>{parcel.parcelName}</td>
+                <td>{parcel.cost}</td>
+                <td>status</td>
+                <td>Blue</td>
+              </tr>;
+            })}
+            {/* row */}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

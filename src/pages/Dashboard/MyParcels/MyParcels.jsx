@@ -10,7 +10,7 @@ const MyParcels = () => {
     queryKey: ["myParcels", user?.email],
     queryFn: async () => {
       const res = await axiosSecure.get(`/parcels?email=${user.email}`);
-
+      console.log(parcels);
       return res.data;
     },
   });
@@ -33,16 +33,15 @@ const MyParcels = () => {
             </tr>
           </thead>
           <tbody>
-            {parcels.map((parcel, i) => {
+            {parcels.map((parcel, index) => {
               <tr key={parcel._id}>
-                <th>{i + 1}</th>
+                <th>{index + 1}</th>
                 <td>{parcel.parcelName}</td>
                 <td>{parcel.cost}</td>
                 <td>status</td>
                 <td>Blue</td>
               </tr>;
             })}
-            {/* row */}
           </tbody>
         </table>
       </div>

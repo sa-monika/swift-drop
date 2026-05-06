@@ -2,6 +2,9 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import useAuth from "../../../Hooks/UseAuth";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { FiEdit } from "react-icons/fi";
+import { HiMiniMagnifyingGlass } from "react-icons/hi2";
+import { AiFillDelete } from "react-icons/ai";
 
 const MyParcels = () => {
   const { user } = useAuth();
@@ -10,7 +13,7 @@ const MyParcels = () => {
     queryKey: ["myParcels", user?.email],
     queryFn: async () => {
       const res = await axiosSecure.get(`/parcels?email=${user.email}`);
-      console.log(parcels);
+
       return res.data;
     },
   });
@@ -20,7 +23,7 @@ const MyParcels = () => {
         My Parcels : {parcels.length}
       </h2>
 
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto text-black">
         <table className="table table-zebra">
           {/* head */}
           <thead>
@@ -33,15 +36,26 @@ const MyParcels = () => {
             </tr>
           </thead>
           <tbody>
-            {parcels.map((parcel, index) => {
+            {parcels.map((parcel, index) => (
               <tr key={parcel._id}>
                 <th>{index + 1}</th>
                 <td>{parcel.parcelName}</td>
                 <td>{parcel.cost}</td>
                 <td>status</td>
                 <td>Blue</td>
-              </tr>;
-            })}
+                <td className="space-x-2">
+                  <button className="btn btn-square hover:bg-primary">
+                    <FiEdit></FiEdit>
+                  </button>
+                  <button className="btn btn-square hover:bg-primary">
+                    <HiMiniMagnifyingGlass />
+                  </button>
+                  <button className="btn btn-square hover:bg-primary">
+                    <AiFillDelete />
+                  </button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

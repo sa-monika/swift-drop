@@ -6,6 +6,7 @@ import { FiEdit } from "react-icons/fi";
 import { HiMiniMagnifyingGlass } from "react-icons/hi2";
 import { AiFillDelete } from "react-icons/ai";
 import Swal from "sweetalert2";
+import { Link } from "react-router";
 
 const MyParcels = () => {
   const { user } = useAuth();
@@ -62,7 +63,8 @@ const MyParcels = () => {
               <th></th>
               <th>Parcel Name</th>
               <th>Cost</th>
-              <th>Payment Status</th>
+              <th>Payment</th>
+              <th>Delivery Status</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -72,8 +74,18 @@ const MyParcels = () => {
                 <th>{index + 1}</th>
                 <td>{parcel.parcelName}</td>
                 <td>{parcel.cost}</td>
-                <td>status</td>
-                <td>Blue</td>
+                <td>
+                  {parcel.paymentStatus === "paid" ? (
+                    <span className="text-red-600 font-semibold">Paid</span>
+                  ) : (
+                    <Link to={`/dashboard/payment/${parcel._id}`}>
+                      <button className="btn btn-sm text-black btn-primary">
+                        Pay
+                      </button>
+                    </Link>
+                  )}
+                </td>
+                <td>{parcel.paymentStatus}</td>
                 <td className="space-x-2">
                   <button className="btn btn-square hover:bg-primary">
                     <FiEdit></FiEdit>

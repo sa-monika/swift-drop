@@ -11,7 +11,7 @@ const PrivateRoute = ({ children }) => {
 
   if (loading) {
     return (
-      <div className=" items-center mx-auto">
+      <div className="flex justify-center items-center min-h-screen">
         <PropagateLoader color="#ffaf13" />
       </div>
     );

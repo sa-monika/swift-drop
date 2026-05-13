@@ -16,19 +16,40 @@ const Payment = () => {
     },
   });
 
+  const handlePayment = async () => {
+    const paymentInfo = {
+      cost: parcel.cost,
+      senderEmail: parcel.senderEmail,
+      parcelId: parcel._id,
+      parcelName: parcel.parcelName,
+    };
+    const res = await axiosSecure.post("/create-checkout-session", paymentInfo);
+
+    console.log(res.data);
+    // for navigation
+    window.location.href = res.data.url;
+  };
+
   if (isLoading) {
     return (
-      <div className="">
-        <PropagateLoader className="max-w-11/12 mx-auto" color="#ffaf13" />
+      <div className="flex justify-center items-center min-h-screen">
+        <PropagateLoader color="#ffaf13" />
       </div>
     );
   }
   return (
     <div className="p-10">
       <div className="card text-black max-w-xl mx-auto p-8 space-y-1 shadow-xl">
-        <h2>Please pay for : {parcel.parcelName}</h2>
-        <h2>Please pay for : {parcel.cost}</h2>
-        <button className="btn btn-primary mt-2">Pay</button>
+        <h2>
+          Please pay $ {parcel.cost} for {parcel.parcelName}
+        </h2>
+
+        <button
+          onClick={handlePayment}
+          className="btn btn-success text-white  mt-2"
+        >
+          Pay
+        </button>
       </div>
     </div>
   );

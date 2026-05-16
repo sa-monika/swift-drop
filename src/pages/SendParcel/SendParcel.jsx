@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm, useWatch } from "react-hook-form";
-import { useLoaderData } from "react-router";
+import { useLoaderData, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useAuth from "../../Hooks/useAuth";
@@ -16,6 +16,7 @@ const SendParcel = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const serviceCenters = useLoaderData();
+  const navigate = useNavigate();
   const regionsDuplicate = serviceCenters.map((c) => c.region);
   const regions = [...new Set(regionsDuplicate)];
 
@@ -65,6 +66,8 @@ const SendParcel = () => {
         axiosSecure.post("/parcels", data).then((res) => {
           console.log(res.data);
         });
+
+        navigate("/dashboard/my-parcels");
         // Swal.fire({
         //   title: "Deleted!",
         //   text: "Your file has been deleted.",

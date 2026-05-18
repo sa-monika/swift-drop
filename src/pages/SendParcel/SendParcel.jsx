@@ -65,9 +65,18 @@ const SendParcel = () => {
         // save the parcel info in database
         axiosSecure.post("/parcels", data).then((res) => {
           console.log(res.data);
+          if (res.data.insertedId) {
+            navigate("/dashboard/my-parcels");
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Parcel has created. Please Pay",
+              showConfirmButton: false,
+              timer: 2500,
+            });
+          }
         });
 
-        navigate("/dashboard/my-parcels");
         // Swal.fire({
         //   title: "Deleted!",
         //   text: "Your file has been deleted.",

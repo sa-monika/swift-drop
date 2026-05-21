@@ -59,7 +59,7 @@ const SendParcel = () => {
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "I agree!",
+      confirmButtonText: "Confirm and Continue Payment",
     }).then((result) => {
       if (result.isConfirmed) {
         // save the parcel info in database
@@ -76,12 +76,6 @@ const SendParcel = () => {
             });
           }
         });
-
-        // Swal.fire({
-        //   title: "Deleted!",
-        //   text: "Your file has been deleted.",
-        //   icon: "success",
-        // });
       }
     });
   };

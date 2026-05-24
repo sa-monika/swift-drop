@@ -64,8 +64,8 @@ const MyParcels = () => {
   };
 
   return (
-    <div>
-      <h2 className="text-primary text-4xl  font-semibold text-center my-4">
+    <div className="bg-white rounded-xl m-4 p-3">
+      <h2 className="text-secondary text-4xl  font-bold ml-3 my-4">
         My Parcels : {parcels.length}
       </h2>
 

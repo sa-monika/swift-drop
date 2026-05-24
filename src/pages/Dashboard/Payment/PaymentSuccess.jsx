@@ -21,12 +21,14 @@ const PaymentSuccess = () => {
           });
         });
     }
-  }, [sessionId]);
+  }, [sessionId, axiosSecure]);
   return (
-    <div className="text-black card">
-      <h2 className="text-4xl text-center font-bold">Payment Successful</h2>
-      <p>Transaction id: {paymentInfo.transactionId}</p>
-      <p>Tracking id: {paymentInfo.trackingId}</p>
+    <div className="text-black card ">
+      <div className="text-center p-5 space-y-2">
+        <h2 className="text-4xl text-center font-bold">Payment Successful</h2>
+        <p>Transaction id: {paymentInfo.transactionId}</p>
+        <p>Tracking id: {paymentInfo.trackingId}</p>
+      </div>
     </div>
   );
 };

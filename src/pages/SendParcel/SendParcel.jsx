@@ -330,25 +330,15 @@ const SendParcel = () => {
                 className="input w-full"
                 placeholder="Receiver Phone No."
               />
-              {/* Your district  */}
-              {/* <label className="label font-bold text-[16px] mt-4">
-                Your District
-              </label>
 
-              <input
-                type="text"
-                {...register("yourDistrict", { required: true })}
-                className="input w-full"
-                placeholder="Your District"
-              /> */}
-              {/* pickup instructions  */}
+              {/* delivery instructions  */}
               <label className="label font-bold text-[16px] mt-4">
-                Pickup Instructions
+                Delivery Instructions
               </label>
               <textarea
-                {...register("pickupInstructions", { required: true })}
+                {...register("deliveryInstructions", { required: true })}
                 className="textarea w-full"
-                placeholder="Pickup Instructions"
+                placeholder="Delivery Instructions"
               ></textarea>
             </fieldset>
           </div>

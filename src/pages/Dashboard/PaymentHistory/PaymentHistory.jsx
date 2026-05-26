@@ -1,8 +1,23 @@
+import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import useAuth from "../../../Hooks/useAuth";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const PaymentHistory = () => {
+  const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
+
+  const { data: payments = [] } = useQuery({
+    queryKey: ["payments", user?.email],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/payments?email=${user.email}`);
+      console.log(res.data);
+      return res.data;
+    },
+  });
+
   return (
-    <div className=" m-4 p-3 bg-white rounded-xl">
+    <div className=" m-5 p-3 bg-white rounded-xl">
       <h2 className="text-secondary text-4xl  font-bold ml-3 my-4">
         Payment History
       </h2>
@@ -21,16 +36,20 @@ const PaymentHistory = () => {
           </thead>
           <tbody>
             {/* row 1 */}
-            <tr>
-              <th>1</th>
-              <td>{}</td>
-              <td>{}</td>
-              <td>{}</td>
-              <td>{}</td>
-              <td>
-                <button className="btn bg-amber-100">View</button>
-              </td>
-            </tr>
+            {payments.map((payment, index) => (
+              <tr key={payment._id}>
+                <th>{index + 1}</th>
+                <td>{payment.parcelName}</td>
+                <td>{}</td>
+                <td>{payment.trackingId}</td>
+                <td>
+                  {payment.amount} {payment.currency}
+                </td>
+                <td>
+                  <button className="btn bg-amber-100">View</button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

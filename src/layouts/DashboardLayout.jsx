@@ -1,5 +1,4 @@
 import React from "react";
-
 import { CiDeliveryTruck } from "react-icons/ci";
 import { TbTruckDelivery } from "react-icons/tb";
 import { Link, NavLink, Outlet } from "react-router";
@@ -8,6 +7,7 @@ import { GoHome } from "react-icons/go";
 import { IoCardOutline } from "react-icons/io5";
 import { BsTruck } from "react-icons/bs";
 import { LuSettings2 } from "react-icons/lu";
+import Logo from "../components/Logo/Logo";
 
 const DashboardLayout = () => {
   return (
@@ -23,7 +23,8 @@ const DashboardLayout = () => {
           >
             <RxHamburgerMenu className="size-5" />
           </label>
-          <div className="px-4">Swift Drop Dashboard</div>
+          <Logo></Logo>
+          {/* <div className="px-4">Swift Drop Dashboard</div> */}
         </nav>
         {/* Page content here */}
 
@@ -36,9 +37,9 @@ const DashboardLayout = () => {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <div className="flex min-h-full flex-col items-start bg-white shadow-sm is-drawer-close:w-14 is-drawer-open:w-64">
+        <div className="flex min-h-full flex-col items-start bg-white shadow-sm is-drawer-close:w-14 is-drawer-open:w-64 ">
           {/* Sidebar content here */}
-          <ul className="menu w-full grow">
+          <ul className="menu w-full grow space-y-1">
             {/* List item */}
 
             <li>

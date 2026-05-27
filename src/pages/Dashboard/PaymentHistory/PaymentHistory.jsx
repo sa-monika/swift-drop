@@ -40,7 +40,7 @@ const PaymentHistory = () => {
               <tr key={payment._id}>
                 <th>{index + 1}</th>
                 <td>{payment.parcelName}</td>
-                <td>{}</td>
+                <td>{payment.customerEmail}</td>
                 <td>{payment.trackingId}</td>
                 <td>
                   {payment.amount} {payment.currency}

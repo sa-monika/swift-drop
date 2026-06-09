@@ -4,6 +4,7 @@ import useAuth from "../../../Hooks/UseAuth";
 import { Link, Navigate, useLocation, useNavigate } from "react-router";
 import SocialLogin from "../SocialLogin/SocialLogin";
 import axios from "axios";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const Register = () => {
   const {
@@ -16,15 +17,11 @@ const Register = () => {
 
   const location = useLocation();
   const navigate = useNavigate();
-
+  const axiosSecure = useAxiosSecure();
   const handleRegistration = (data) => {
-    // console.log(data);
-
     const profileImg = data.photo[0];
     registerUser(data.email, data.password)
-      .then((result) => {
-        console.log(result.user);
-
+      .then(() => {
         // store the image in formData
 
         const formData = new FormData();
@@ -35,13 +32,26 @@ const Register = () => {
         const image_API_Url = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_host}`;
 
         axios.post(image_API_Url, formData).then((res) => {
-          console.log("after image upload", res.data.data.url);
+          const photoURL = res.data.data.url;
+
+          // create user in the database
+
+          const userInfo = {
+            email: data.email,
+            displayName: data.name,
+            photoURL: photoURL,
+          };
+          axiosSecure.post("/users", userInfo).then((res) => {
+            if (res.data.insertedId) {
+              console.log("user created in the database");
+            }
+          });
 
           // update user profile to firebase
 
           const userProfile = {
             displayName: data.name,
-            photoURL: res.data.data.url,
+            photoURL: photoURL,
           };
 
           // in firebase

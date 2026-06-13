@@ -3,7 +3,7 @@ import { useForm, useWatch } from "react-hook-form";
 import useAuth from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useLoaderData, useNavigate } from "react-router";
-
+import banner1 from "../../assets/banner1.png";
 const Rider = () => {
   const {
     handleSubmit,
@@ -40,109 +40,167 @@ const Rider = () => {
         hassle. From personal packages to business shipments — we deliver on
         time, every time.
       </p>
-      <form
-        className="mt-12 p-4 space-y-8"
-        onSubmit={handleSubmit(handleRiderApplication)}
-      >
-        <div>
-          <fieldset>
-            <h2 className="text-2xl font-bold text-secondary mb-4">
-              Tell us about yourself
-            </h2>
-            {/* sender name  */}
-            <label className="label font-bold text-[16px]">Your Name</label>
-            <input
-              type="text"
-              {...register("yourName", { required: true })}
-              defaultValue={user?.displayName}
-              className="input w-full"
-              placeholder="Sender Name"
-            />
-            {/* sender email  */}
-            <label className="label font-bold text-[16px] mt-4">
-              Your Email
-            </label>
-            <input
-              type="email"
-              {...register("senderEmail", { required: true })}
-              defaultValue={user?.email}
-              className="input w-full"
-              placeholder="Sender Email"
-            />
+      <div className="flex justify-center items-center mx-auto shadow-xl border-1 border-gray-200  max-w-11/12 mb-20 rounded-md">
+        <div className="flex-1">
+          <div>
+            <form
+              className="mt-12 p-4 space-y-8"
+              onSubmit={handleSubmit(handleRiderApplication)}
+            >
+              <div className="p-5">
+                <fieldset>
+                  <h2 className="text-2xl font-bold text-secondary mb-4">
+                    Tell us about yourself
+                  </h2>
+                  {/*  name  */}
+                  <label className="label font-bold text-[16px]">
+                    Your Name
+                  </label>
+                  <input
+                    type="text"
+                    {...register("name", { required: true })}
+                    defaultValue={user?.displayName}
+                    className="input w-full"
+                    placeholder="Your Name"
+                  />
+                  {/* email  */}
+                  <label className="label font-bold text-[16px] mt-4">
+                    Your Email
+                  </label>
+                  <input
+                    type="email"
+                    {...register("email", { required: true })}
+                    defaultValue={user?.email}
+                    className="input w-full"
+                    placeholder="Your Email"
+                  />
 
-            {/* sender region */}
+                  {/* region */}
 
-            <fieldset className="fieldset mt-4">
-              <legend className="label  font-bold text-[16px]">
-                Your Region
-              </legend>
-              <select
-                {...register("senderRegion")}
-                defaultValue="Pick a region"
-                className="select w-full"
-              >
-                <option disabled={true}>Pick a region</option>
-                {regions.map((r, i) => (
-                  <option key={i} value={r}>
-                    {r}
-                  </option>
-                ))}
-              </select>
-            </fieldset>
+                  <fieldset className="fieldset mt-4">
+                    <legend className="label  font-bold text-[16px]">
+                      Your Region
+                    </legend>
+                    <select
+                      {...register("region")}
+                      defaultValue="Pick a region"
+                      className="select w-full"
+                    >
+                      <option disabled={true}>Pick a region</option>
+                      {regions.map((r, i) => (
+                        <option key={i} value={r}>
+                          {r}
+                        </option>
+                      ))}
+                    </select>
+                  </fieldset>
 
-            {/* sender district */}
-            <fieldset className="fieldset mt-4">
-              <legend className="label  font-bold text-[16px]">
-                Your District
-              </legend>
-              <select
-                {...register("senderDistrict")}
-                defaultValue="Pick a region"
-                className="select w-full"
-              >
-                <option disabled={true}>Pick a District</option>
-                {districtByRegion(senderRegion).map((d, i) => (
-                  <option key={i} value={d}>
-                    {d}
-                  </option>
-                ))}
-              </select>
-            </fieldset>
+                  {/* district */}
+                  <fieldset className="fieldset mt-4">
+                    <legend className="label  font-bold text-[16px]">
+                      Your District
+                    </legend>
+                    <select
+                      {...register("district")}
+                      defaultValue="Pick a region"
+                      className="select w-full"
+                    >
+                      <option disabled={true}>Pick a District</option>
+                      {districtByRegion(senderRegion).map((d, i) => (
+                        <option key={i} value={d}>
+                          {d}
+                        </option>
+                      ))}
+                    </select>
+                  </fieldset>
 
-            {/* sender address  */}
-            <label className="label font-bold text-[16px] mt-4">
-              Sender Address
-            </label>
-            <input
-              type="text"
-              {...register("senderAddress", { required: true })}
-              className="input w-full"
-              placeholder="Sender Address"
-            />
+                  {/* address  */}
+                  <label className="label font-bold text-[16px] mt-4">
+                    Address
+                  </label>
+                  <input
+                    type="text"
+                    {...register("address", { required: true })}
+                    className="input w-full"
+                    placeholder="Your Address"
+                  />
 
-            {/* sender phone no.  */}
-            <label className="label font-bold text-[16px] mt-4">
-              Phone Number
-            </label>
-            <input
-              type="number"
-              {...register("senderPhoneNo", { required: true })}
-              className="input w-full"
-              placeholder="Sender Phone No."
-            />
+                  {/* license  */}
+                  <label className="label font-bold text-[16px] mt-4">
+                    Driving License Number
+                  </label>
+                  <input
+                    type="number"
+                    {...register("license", { required: true })}
+                    className="input w-full"
+                    placeholder="Driving License Number"
+                  />
+                  {/* NID */}
+                  <label className="label font-bold text-[16px] mt-4">
+                    NID No
+                  </label>
+                  <input
+                    type="number"
+                    {...register("nid", { required: true })}
+                    className="input w-full"
+                    placeholder="NID"
+                  />
 
-            {/* pickup instructions  */}
-            <label className="label font-bold text-[16px] mt-4">
-              Tell us about yourself
-            </label>
-            <textarea
-              {...register("pickupInstructions", { required: true })}
-              className="textarea w-full"
-              placeholder="Pickup Instructions"
-            ></textarea>
-          </fieldset>
+                  {/* phone no.  */}
+                  <label className="label font-bold text-[16px] mt-4">
+                    Phone Number
+                  </label>
+                  <input
+                    type="number"
+                    {...register("phoneNo", { required: true })}
+                    className="input w-full"
+                    placeholder="Your Phone Number"
+                  />
+                  {/* model and year */}
+                  <label className="label font-bold text-[16px] mt-4">
+                    Bike Brand Model and Year
+                  </label>
+                  <input
+                    type="text"
+                    {...register("modelYear", { required: true })}
+                    className="input w-full"
+                    placeholder="Bike Brand Model and Year"
+                  />
+                  {/*registration */}
+                  <label className="label font-bold text-[16px] mt-4">
+                    Bike Registration Number
+                  </label>
+                  <input
+                    type="number"
+                    {...register("regNum", { required: true })}
+                    className="input w-full"
+                    placeholder="Bike Registration Number"
+                  />
+
+                  {/* more  */}
+                  <label className="label font-bold text-[16px] mt-4">
+                    Tell us about yourself
+                  </label>
+                  <textarea
+                    {...register("aboutYourself", { required: true })}
+                    className="textarea w-full"
+                    placeholder=""
+                  ></textarea>
+                </fieldset>
+                <button className="btn btn-primary text-black mt-5 w-full">
+                  submit
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
-      </form>
+        <div className="">
+          <img
+            src={banner1}
+            className="object-cover rounded-full w-100 h-100"
+          />
+        </div>
+      </div>
     </div>
   );
 };

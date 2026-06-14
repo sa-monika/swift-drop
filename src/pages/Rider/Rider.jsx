@@ -18,7 +18,7 @@ const Rider = () => {
   const regionsDuplicate = serviceCenters.map((c) => c.region);
   const regions = [...new Set(regionsDuplicate)];
 
-  const senderRegion = useWatch({ control, name: "senderRegion" });
+  const riderRegion = useWatch({ control, name: "region" });
 
   const districtByRegion = (region) => {
     const regionDistricts = serviceCenters.filter((c) => c.region === region);
@@ -41,6 +41,7 @@ const Rider = () => {
         time, every time.
       </p>
       <div className="flex justify-center items-center mx-auto shadow-xl border-1 border-gray-200  max-w-11/12 mb-20 rounded-md">
+        {/* form  */}
         <div className="flex-1">
           <div>
             <form
@@ -106,7 +107,7 @@ const Rider = () => {
                       className="select w-full"
                     >
                       <option disabled={true}>Pick a District</option>
-                      {districtByRegion(senderRegion).map((d, i) => (
+                      {districtByRegion(riderRegion).map((d, i) => (
                         <option key={i} value={d}>
                           {d}
                         </option>
@@ -137,7 +138,7 @@ const Rider = () => {
                   />
                   {/* NID */}
                   <label className="label font-bold text-[16px] mt-4">
-                    NID No
+                    NID No.
                   </label>
                   <input
                     type="number"
@@ -187,14 +188,17 @@ const Rider = () => {
                     placeholder=""
                   ></textarea>
                 </fieldset>
-                <button className="btn btn-primary text-black mt-5 w-full">
-                  submit
-                </button>
+                <input
+                  type="submit"
+                  className="btn btn-primary text-black mt-5 w-full"
+                  value="Apply as a Rider"
+                />
               </div>
             </form>
           </div>
         </div>
-        <div className="">
+        {/* image  */}
+        <div>
           <img
             src={banner1}
             className="object-cover rounded-full w-100 h-100"

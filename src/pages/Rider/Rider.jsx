@@ -4,6 +4,7 @@ import useAuth from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useLoaderData, useNavigate } from "react-router";
 import banner1 from "../../assets/banner1.png";
+import Swal from "sweetalert2";
 const Rider = () => {
   const {
     handleSubmit,
@@ -28,6 +29,17 @@ const Rider = () => {
 
   const handleRiderApplication = (data) => {
     console.log(data);
+    axiosSecure.post("/riders", data).then((res) => {
+      if (res.data.insertedId) {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Your Application has been submitted. We will reach out soon",
+          showConfirmButton: false,
+          timer: 2500,
+        });
+      }
+    });
   };
 
   return (

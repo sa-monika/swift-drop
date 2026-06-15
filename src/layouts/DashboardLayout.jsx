@@ -7,6 +7,7 @@ import { GoHome } from "react-icons/go";
 import { IoCardOutline } from "react-icons/io5";
 import { BsTruck } from "react-icons/bs";
 import { LuSettings2 } from "react-icons/lu";
+import { MdDirectionsBike } from "react-icons/md";
 import Logo from "../components/Logo/Logo";
 
 const DashboardLayout = () => {
@@ -77,6 +78,18 @@ const DashboardLayout = () => {
                 <IoCardOutline className="size-6" />
                 <span className="is-drawer-close:hidden font-medium text-[16px]">
                   Payment History
+                </span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/dashboard/approve-riders"
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip="approveRiders"
+              >
+                <MdDirectionsBike className="size-6" />
+                <span className="is-drawer-close:hidden font-medium text-[16px]">
+                  Approve Riders
                 </span>
               </NavLink>
             </li>

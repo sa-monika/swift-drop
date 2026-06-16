@@ -4,10 +4,11 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { FaUserCheck } from "react-icons/fa";
 import { IoPersonRemove } from "react-icons/io5";
 import { AiFillDelete } from "react-icons/ai";
+import Swal from "sweetalert2";
 
 const ApproveRiders = () => {
   const axiosSecure = useAxiosSecure();
-  const { data: riders = [] } = useQuery({
+  const { refetch, data: riders = [] } = useQuery({
     queryKey: ["riders", "pending"],
     queryFn: async () => {
       const res = await axiosSecure.get("/riders");
@@ -15,9 +16,54 @@ const ApproveRiders = () => {
     },
   });
 
-  const handleApproval = () => {};
+  const handleApproval = (rider) => {
+    updateRiderStatus(rider, "approved");
+  };
+  const handleRejected = (rider) => {
+    updateRiderStatus(rider, "rejected");
+  };
 
-  const handleRiderDelete = () => {};
+  const updateRiderStatus = (rider, status) => {
+    const updatedInfo = { status: status, email: rider.email };
+    axiosSecure.patch(`/riders/${rider._id}`, updatedInfo).then((res) => {
+      if (res.data.modifiedCount) {
+        refetch();
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: `Rider has been approved ${status}`,
+          showConfirmButton: false,
+          timer: 2500,
+        });
+      }
+    });
+  };
+  const handleRiderDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/riders/${id}`).then((res) => {
+          console.log(res.data);
+          if (res.data.deletedCount) {
+            // refresh the data in the ui
+            refetch();
+            Swal.fire({
+              title: "Deleted!",
+              text: "Rider request has been deleted",
+              icon: "success",
+            });
+          }
+        });
+      }
+    });
+  };
   return (
     <div>
       <div className="bg-white rounded-xl m-5 p-3">
@@ -35,7 +81,6 @@ const ApproveRiders = () => {
                 <th>Email</th>
                 <th>District</th>
                 <th>Status</th>
-
                 <th>Actions</th>
               </tr>
             </thead>
@@ -46,23 +91,32 @@ const ApproveRiders = () => {
                   <td>{rider.name}</td>
                   <td>{rider.email}</td>
                   <td>{rider.district}</td>
-                  <td>{rider.status}</td>
+                  <td>
+                    <p
+                      className={`${rider.status === "approved" ? "text-green-600 font-semibold" : "text-red-600 font-semibold"}`}
+                    >
+                      {rider.status}
+                    </p>
+                  </td>
 
                   <td className="space-x-2">
                     <button
-                      onClick={() => handleApproval(rider._id)}
+                      onClick={() => handleApproval(rider)}
                       className="btn btn-circle hover:bg-primary"
                     >
-                      <FaUserCheck size={20} />
+                      <FaUserCheck size={17} />
                     </button>
-                    <button className="btn btn-circle hover:bg-primary">
-                      <IoPersonRemove size={20} />
+                    <button
+                      onClick={() => handleRejected(rider)}
+                      className="btn btn-circle hover:bg-primary"
+                    >
+                      <IoPersonRemove size={17} />
                     </button>
                     <button
                       onClick={() => handleRiderDelete(rider._id)}
                       className="btn btn-circle hover:bg-primary"
                     >
-                      <AiFillDelete size={20} />
+                      <AiFillDelete size={17} />
                     </button>
                   </td>
                 </tr>

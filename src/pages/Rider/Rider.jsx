@@ -31,6 +31,7 @@ const Rider = () => {
     console.log(data);
     axiosSecure.post("/riders", data).then((res) => {
       if (res.data.insertedId) {
+        navigate("");
         Swal.fire({
           position: "center",
           icon: "success",

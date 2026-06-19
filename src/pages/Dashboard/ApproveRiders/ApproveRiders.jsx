@@ -4,6 +4,7 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { FaUserCheck } from "react-icons/fa";
 import { IoPersonRemove } from "react-icons/io5";
 import { AiFillDelete } from "react-icons/ai";
+import { MdPersonSearch } from "react-icons/md";
 import Swal from "sweetalert2";
 
 const ApproveRiders = () => {
@@ -117,6 +118,12 @@ const ApproveRiders = () => {
                       className="btn btn-circle hover:bg-primary"
                     >
                       <AiFillDelete size={17} />
+                    </button>
+                    <button
+                      // onClick={() => handleRiderDelete(rider._id)}
+                      className="btn btn-circle hover:bg-primary"
+                    >
+                      <MdPersonSearch size={17} />
                     </button>
                   </td>
                 </tr>

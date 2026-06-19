@@ -9,6 +9,7 @@ import { BsTruck } from "react-icons/bs";
 import { LuSettings2 } from "react-icons/lu";
 import { MdDirectionsBike } from "react-icons/md";
 import Logo from "../components/Logo/Logo";
+import { HiUsers } from "react-icons/hi";
 
 const DashboardLayout = () => {
   return (
@@ -61,7 +62,7 @@ const DashboardLayout = () => {
               <NavLink
                 to="/dashboard/my-parcels"
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="MyParcels"
+                data-tip="My Parcels"
               >
                 <BsTruck className="size-6" />
                 <span className="is-drawer-close:hidden font-medium text-[16px]">
@@ -73,7 +74,7 @@ const DashboardLayout = () => {
               <NavLink
                 to="/dashboard/payment-history"
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="PaymentHistory"
+                data-tip="Payment History"
               >
                 <IoCardOutline className="size-6" />
                 <span className="is-drawer-close:hidden font-medium text-[16px]">
@@ -85,11 +86,23 @@ const DashboardLayout = () => {
               <NavLink
                 to="/dashboard/approve-riders"
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="approveRiders"
+                data-tip="Approve Riders"
               >
                 <MdDirectionsBike className="size-6" />
                 <span className="is-drawer-close:hidden font-medium text-[16px]">
                   Approve Riders
+                </span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/dashboard/users-management"
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip="Users Management"
+              >
+                <HiUsers className="size-6" />
+                <span className="is-drawer-close:hidden font-medium text-[16px]">
+                  Users Management
                 </span>
               </NavLink>
             </li>

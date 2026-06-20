@@ -14,7 +14,7 @@ const UsersManagement = () => {
     },
   });
 
-  const handleMakeUser = (user) => {
+  const handleMakeAdmin = (user) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -28,7 +28,7 @@ const UsersManagement = () => {
         const roleInfo = {
           role: "admin",
         };
-        axiosSecure.patch(`/users/${user._id}`, roleInfo).then((res) => {
+        axiosSecure.patch(`/users/${user._id}/role`, roleInfo).then((res) => {
           if (res.data.modifiedCount) {
             refetch();
             Swal.fire({
@@ -58,7 +58,7 @@ const UsersManagement = () => {
         const roleInfo = {
           role: "user",
         };
-        axiosSecure.patch(`/users/${user._id}`, roleInfo).then((res) => {
+        axiosSecure.patch(`/users/${user._id}/role`, roleInfo).then((res) => {
           console.log(res.data);
 
           if (res.data.modifiedCount) {
@@ -134,7 +134,7 @@ const UsersManagement = () => {
                     ) : (
                       <button
                         onClick={() => {
-                          handleMakeUser(user);
+                          handleMakeAdmin(user);
                         }}
                         className="btn bg-green-500"
                       >

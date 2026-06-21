@@ -109,11 +109,12 @@ export const router = createBrowserRouter([
       },
       {
         path: "users-management",
-        element: (
-          <AdminRoute>
-            <UsersManagement></UsersManagement>
-          </AdminRoute>
-        ),
+        Component: UsersManagement,
+        // element: (
+        //   <AdminRoute>
+        //     <UsersManagement></UsersManagement>
+        //   </AdminRoute>
+        // ),
       },
     ],
   },

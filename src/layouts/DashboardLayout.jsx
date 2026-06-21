@@ -10,6 +10,7 @@ import { LuSettings2 } from "react-icons/lu";
 import { MdDirectionsBike } from "react-icons/md";
 import Logo from "../components/Logo/Logo";
 import { HiUsers } from "react-icons/hi";
+import { RiEBikeFill } from "react-icons/ri";
 import useRole from "../Hooks/useRole";
 
 const DashboardLayout = () => {
@@ -102,6 +103,19 @@ const DashboardLayout = () => {
                     <MdDirectionsBike className="size-6" />
                     <span className="is-drawer-close:hidden font-medium text-[16px]">
                       Approve Riders
+                    </span>
+                  </NavLink>
+                </li>
+                {/* assign riders */}
+                <li>
+                  <NavLink
+                    to="/dashboard/assign-riders"
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Assign Riders"
+                  >
+                    <RiEBikeFill className="size-6" />
+                    <span className="is-drawer-close:hidden font-medium text-[16px]">
+                      Assign Riders
                     </span>
                   </NavLink>
                 </li>

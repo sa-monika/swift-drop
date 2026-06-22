@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { FiEdit } from "react-icons/fi";
@@ -7,6 +7,8 @@ import { AiFillDelete } from "react-icons/ai";
 
 const AssignRiders = () => {
   const axiosSecure = useAxiosSecure();
+  const riderModalRef = useRef();
+  const [selectedParcel, setSelectedParcel] = useState();
   const { data: parcels = [] } = useQuery({
     queryKey: ["parcels", "pending-pickup"],
     queryFn: async () => {
@@ -16,12 +18,28 @@ const AssignRiders = () => {
       return res.data;
     },
   });
+
+  const { data: riders = [] } = useQuery({
+    queryKey: ["riders", selectedParcel.senderDistrict, "available"],
+    enabled: !!selectedParcel,
+    queryFn: async () => {
+      const res = await axiosSecure.get(
+        `/riders?status=approved&district=${selectedParcel.senderDistrict}&workStatus=available`,
+      );
+      return res.data;
+    },
+  });
+
+  const openAssignRiderModal = (parcel) => {
+    setSelectedParcel(parcel);
+    riderModalRef.current.showModal();
+    console.log(parcel);
+  };
   return (
     <div className="bg-white rounded-xl m-5 p-3">
       <h2 className="text-secondary text-4xl  font-bold ml-3 my-4">
         Assign Riders : {parcels.length}
       </h2>
-
       <div className="overflow-x-auto text-black">
         <table className="table table-zebra">
           {/* head */}
@@ -33,6 +51,7 @@ const AssignRiders = () => {
               <th>Created At</th>
               <th>Pickup District</th>
               <th>Pickup Address</th>
+
               <th>Actions</th>
             </tr>
           </thead>
@@ -43,22 +62,14 @@ const AssignRiders = () => {
                 <td>{parcel.parcelName}</td>
                 <td>{parcel.cost}</td>
                 <td>{parcel.createdAt}</td>
-                {/* <td>
-                  {parcel.paymentStatus === "paid" ? (
-                    <span className="text-green-600 font-semibold">Paid</span>
-                  ) : (
-                    <button
-                      onClick={() => handlePayment(parcel)}
-                      className="btn btn-sm text-black btn-primary"
-                    >
-                      Pay
-                    </button>
-                  )}
-                </td> */}
                 <td>{parcel.senderDistrict}</td>
                 <td>{parcel.senderAddress}</td>
+
                 <td className="space-x-2">
-                  <button className="btn  bg-primary hover:opacity-75">
+                  <button
+                    onClick={() => openAssignRiderModal(parcel)}
+                    className="btn  bg-primary hover:opacity-75"
+                  >
                     Assign Rider
                   </button>
                 </td>
@@ -67,6 +78,22 @@ const AssignRiders = () => {
           </tbody>
         </table>
       </div>
+      {/* Open the modal using document.getElementById('ID').showModal() method */}
+      <dialog
+        ref={riderModalRef}
+        className="modal modal-bottom sm:modal-middle"
+      >
+        <div className="modal-box">
+          <h3 className="font-bold text-lg">Riders: {riders.length}</h3>
+          <p className="py-4">Please select a rider</p>
+          <div className="modal-action">
+            <form method="dialog">
+              {/* if there is a button in form, it will close the modal */}
+              <button className="btn">Close</button>
+            </form>
+          </div>
+        </div>
+      </dialog>
     </div>
   );
 };

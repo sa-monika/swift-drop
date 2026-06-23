@@ -8,7 +8,8 @@ import { AiFillDelete } from "react-icons/ai";
 const AssignRiders = () => {
   const axiosSecure = useAxiosSecure();
   const riderModalRef = useRef();
-  const [selectedParcel, setSelectedParcel] = useState();
+  const [selectedParcel, setSelectedParcel] = useState(null);
+
   const { data: parcels = [] } = useQuery({
     queryKey: ["parcels", "pending-pickup"],
     queryFn: async () => {
@@ -20,11 +21,11 @@ const AssignRiders = () => {
   });
 
   const { data: riders = [] } = useQuery({
-    queryKey: ["riders", selectedParcel.senderDistrict, "available"],
+    queryKey: ["riders", selectedParcel?.senderDistrict, "available"],
     enabled: !!selectedParcel,
     queryFn: async () => {
       const res = await axiosSecure.get(
-        `/riders?status=approved&district=${selectedParcel.senderDistrict}&workStatus=available`,
+        `/riders?status=approved&district=${selectedParcel?.senderDistrict}&workStatus=available`,
       );
       return res.data;
     },
@@ -33,7 +34,8 @@ const AssignRiders = () => {
   const openAssignRiderModal = (parcel) => {
     setSelectedParcel(parcel);
     riderModalRef.current.showModal();
-    console.log(parcel);
+
+    // console.log(parcel);
   };
   return (
     <div className="bg-white rounded-xl m-5 p-3">
@@ -51,7 +53,6 @@ const AssignRiders = () => {
               <th>Created At</th>
               <th>Pickup District</th>
               <th>Pickup Address</th>
-
               <th>Actions</th>
             </tr>
           </thead>
@@ -88,7 +89,6 @@ const AssignRiders = () => {
           <p className="py-4">Please select a rider</p>
           <div className="modal-action">
             <form method="dialog">
-              {/* if there is a button in form, it will close the modal */}
               <button className="btn">Close</button>
             </form>
           </div>

@@ -36,9 +36,16 @@ const AssignRiders = () => {
     riderModalRef.current.showModal();
   };
 
-  // const handleAssignRider = (rider)=>{
+  const handleAssignRider = (rider) => {
+    const riderAssignInfo = {
+      riderId: rider._id,
+      riderEmail: rider.email,
+      riderName: rider.name,
+      parcelId: selectedParcel._id,
+    };
 
-  // }
+    axiosSecure.patch("", riderAssignInfo);
+  };
 
   return (
     <div className="bg-white rounded-xl m-5 p-3">
@@ -107,7 +114,12 @@ const AssignRiders = () => {
                     <td>{rider.name}</td>
                     <td>{rider.email}</td>
                     <td>
-                      <button className="btn btn-primary">Assign</button>
+                      <button
+                        onClick={() => handleAssignRider(rider)}
+                        className="btn btn-sm btn-primary text-black"
+                      >
+                        Assign
+                      </button>
                     </td>
                   </tr>
                 ))}

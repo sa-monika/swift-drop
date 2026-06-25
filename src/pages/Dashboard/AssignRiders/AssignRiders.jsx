@@ -34,9 +34,12 @@ const AssignRiders = () => {
   const openAssignRiderModal = (parcel) => {
     setSelectedParcel(parcel);
     riderModalRef.current.showModal();
-
-    // console.log(parcel);
   };
+
+  // const handleAssignRider = (rider)=>{
+
+  // }
+
   return (
     <div className="bg-white rounded-xl m-5 p-3">
       <h2 className="text-secondary text-4xl  font-bold ml-3 my-4">
@@ -86,7 +89,31 @@ const AssignRiders = () => {
       >
         <div className="modal-box">
           <h3 className="font-bold text-lg">Riders: {riders.length}</h3>
-          <p className="py-4">Please select a rider</p>
+          <div className="overflow-x-auto">
+            <table className="table">
+              {/* head */}
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {riders.map((rider, index) => (
+                  <tr>
+                    <th>{index + 1}</th>
+                    <td>{rider.name}</td>
+                    <td>{rider.email}</td>
+                    <td>
+                      <button className="btn btn-primary">Assign</button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
           <div className="modal-action">
             <form method="dialog">
               <button className="btn">Close</button>

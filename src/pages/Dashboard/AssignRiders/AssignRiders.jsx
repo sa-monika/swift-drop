@@ -81,7 +81,7 @@ const AssignRiders = () => {
                     onClick={() => openAssignRiderModal(parcel)}
                     className="btn  bg-primary hover:opacity-75"
                   >
-                    Assign Rider
+                    Find Rider
                   </button>
                 </td>
               </tr>

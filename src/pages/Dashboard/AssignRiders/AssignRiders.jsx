@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { FiEdit } from "react-icons/fi";
 import { HiMiniMagnifyingGlass } from "react-icons/hi2";
 import { AiFillDelete } from "react-icons/ai";
+import Swal from "sweetalert2";
 
 const AssignRiders = () => {
   const axiosSecure = useAxiosSecure();
@@ -44,7 +45,21 @@ const AssignRiders = () => {
       parcelId: selectedParcel._id,
     };
 
-    axiosSecure.patch("", riderAssignInfo);
+    axiosSecure
+      .patch(`/parcels/${selectedParcel._id}`, riderAssignInfo)
+      .then((res) => {
+        if (res.data.modifiedCount) {
+          riderModalRef.current.close();
+
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Rider has been assigned.",
+            showConfirmButton: false,
+            timer: 2500,
+          });
+        }
+      });
   };
 
   return (

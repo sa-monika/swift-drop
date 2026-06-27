@@ -12,6 +12,7 @@ import Logo from "../components/Logo/Logo";
 import { HiUsers } from "react-icons/hi";
 import { RiEBikeFill } from "react-icons/ri";
 import useRole from "../Hooks/useRole";
+import { FaTasks } from "react-icons/fa";
 
 const DashboardLayout = () => {
   const { role } = useRole();
@@ -91,6 +92,27 @@ const DashboardLayout = () => {
                 </span>
               </NavLink>
             </li>
+
+            {/* rider links  */}
+            {role === "rider" && (
+              <>
+                {/* assigned deliveries */}
+                <li>
+                  <NavLink
+                    to="/dashboard/assigned-deliveries"
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Assigned Deliveries"
+                  >
+                    <FaTasks className="size-6" />
+                    <span className="is-drawer-close:hidden font-medium text-[16px]">
+                      Assigned Deliveries
+                    </span>
+                  </NavLink>
+                </li>
+              </>
+            )}
+
+            {/*  admin links  */}
             {role === "admin" && (
               <>
                 {/* approve riders */}

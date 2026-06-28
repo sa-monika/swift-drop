@@ -3,7 +3,7 @@ import useAuth from "../Hooks/useAuth";
 import useRole from "../Hooks/useRole";
 import { PropagateLoader } from "react-spinners";
 import Forbidden from "../components/Logo/Forbidden/Forbidden";
-const RiderRoutes = ({ children }) => {
+const RiderRoute = ({ children }) => {
   const { loading } = useAuth();
   const { role, roleLoading } = useRole();
 
@@ -21,4 +21,4 @@ const RiderRoutes = ({ children }) => {
   return children;
 };
 
-export default RiderRoutes;
+export default RiderRoute;

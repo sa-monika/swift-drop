@@ -109,6 +109,19 @@ const DashboardLayout = () => {
                     </span>
                   </NavLink>
                 </li>
+                {/* completed deliveries */}
+                <li>
+                  <NavLink
+                    to="/dashboard/completed-deliveries"
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Completed Deliveries"
+                  >
+                    <FaTasks className="size-6" />
+                    <span className="is-drawer-close:hidden font-medium text-[16px]">
+                      Completed Deliveries
+                    </span>
+                  </NavLink>
+                </li>
               </>
             )}
 

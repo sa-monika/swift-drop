@@ -7,7 +7,7 @@ import { GoHome } from "react-icons/go";
 import { IoCardOutline } from "react-icons/io5";
 import { BsTruck } from "react-icons/bs";
 import { LuSettings2 } from "react-icons/lu";
-import { MdDirectionsBike } from "react-icons/md";
+import { MdDirectionsBike, MdOutlineCloudDone } from "react-icons/md";
 import Logo from "../components/Logo/Logo";
 import { HiUsers } from "react-icons/hi";
 import { RiEBikeFill } from "react-icons/ri";
@@ -116,7 +116,7 @@ const DashboardLayout = () => {
                     className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                     data-tip="Completed Deliveries"
                   >
-                    <FaTasks className="size-6" />
+                    <MdOutlineCloudDone className="size-6" />
                     <span className="is-drawer-close:hidden font-medium text-[16px]">
                       Completed Deliveries
                     </span>

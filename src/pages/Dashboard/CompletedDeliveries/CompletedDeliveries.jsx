@@ -7,13 +7,25 @@ const CompletedDeliveries = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
 
-  const {} = useQuery({
-    queryKey: [],
-    queryFn: () => {
-      const res = axiosSecure.get("");
+  const { data: parcels = [] } = useQuery({
+    queryKey: ["parcels", user.email, "parcel_delivered"],
+    queryFn: async () => {
+      const res = await axiosSecure.get(
+        `/parcels/rider?riderEmail=${user.email}&deliveryStatus=parcel_delivered`,
+      );
+      console.log(res.data);
+
       return res.data;
     },
   });
+
+  const calculatePayout = (parcel) => {
+    if (parcel.senderDistrict === parcel.receiverDistrict) {
+      return parcel.cost * 0.8;
+    } else {
+      return parcel.cost * 0.6;
+    }
+  };
 
   return (
     <div>
@@ -28,11 +40,12 @@ const CompletedDeliveries = () => {
             <thead>
               <tr>
                 <th></th>
-                <th>Parcel Name</th>
-                <th>Receiver Email</th>
-                <th>Receiver District</th>
-                <th>Receiver Address</th>
-                <th>Delivery Status</th>
+                <th>Name</th>
+                <th>Created At</th>
+                <th>Pickup District</th>
+                <th>Cost</th>
+                <th>Payout</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -40,35 +53,15 @@ const CompletedDeliveries = () => {
                 <tr key={parcel._id}>
                   <th>{index + 1}</th>
                   <td>{parcel.parcelName}</td>
-                  <td>{parcel.receiverEmail}</td>
-                  <td>{parcel.receiverDistrict}</td>
-                  <td>{parcel.receiverAddress}</td>
-                  <td>{parcel.deliveryStatus}</td>
-
-                  {/* <td className="space-x-2 ">
-                    {parcel.deliveryStatus === "driver_assigned" ? (
-                      <>
-                        <button
-                          onClick={() =>
-                            handleDeliveryStatusUpdate(parcel, "rider_arriving")
-                          }
-                          className="btn bg-green-500 text-white"
-                        >
-                          Accept
-                        </button>
-                        <button
-                          // onClick={() => handleRejectDelivery(parcel)}
-                          className="btn text-white bg-red-600"
-                        >
-                          Reject
-                        </button>
-                      </>
-                    ) : (
-                      <span className="text-secondary text-bold text-[18px]">
-                        Accepted
-                      </span>
-                    )}
-                  </td> */}
+                  <td>{parcel.createdAt}</td>
+                  <td>{parcel.senderDistrict}</td>
+                  <td>{parcel.cost}</td>
+                  <td>{calculatePayout(parcel)}</td>
+                  <td>
+                    <button className="btn btn-primary text-black">
+                      Cash out
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>

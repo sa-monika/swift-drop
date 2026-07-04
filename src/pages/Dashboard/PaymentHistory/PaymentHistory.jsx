@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import useAuth from "../../../Hooks/useAuth";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { Link } from "react-router";
 
 const PaymentHistory = () => {
   const { user } = useAuth();
@@ -43,7 +44,12 @@ const PaymentHistory = () => {
                 <td>{payment.parcelName}</td>
                 <td>{payment.customerEmail}</td>
                 <td>{payment.paidAt}</td>
-                <td>{payment.trackingId}</td>
+                <td>
+                  {" "}
+                  <Link to={`/parcel-track/${payment.trackingId}`}>
+                    {payment.trackingId}
+                  </Link>
+                </td>
                 <td>
                   {payment.amount} {payment.currency}
                 </td>

@@ -79,6 +79,7 @@ const MyParcels = () => {
               <th>Cost</th>
               <th>Payment</th>
               <th>Delivery Status</th>
+              <th>Tracking Number</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -101,6 +102,11 @@ const MyParcels = () => {
                   )}
                 </td>
                 <td>{parcel.deliveryStatus}</td>
+                <td>
+                  <Link to={`/parcel-track/${parcel.trackingId}`}>
+                    {parcel.trackingId}
+                  </Link>
+                </td>
                 <td className="space-x-2">
                   <button className="btn btn-square hover:bg-primary">
                     <FiEdit></FiEdit>

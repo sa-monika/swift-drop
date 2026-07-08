@@ -57,7 +57,9 @@ const DashboardLayout = () => {
                 data-tip="Homepage"
               >
                 {/* Home icon */}
-                <GoHome className="size-6" />
+                {/* <GoHome className="size-6" />
+                 */}
+                {/* <Logo></Logo> */}
                 <span className="is-drawer-close:hidden font-medium text-[16px]">
                   Home
                 </span>

@@ -13,6 +13,7 @@ import { HiUsers } from "react-icons/hi";
 import { RiEBikeFill } from "react-icons/ri";
 import useRole from "../Hooks/useRole";
 import { FaTasks } from "react-icons/fa";
+import logoImg from "../assets/logo.png";
 
 const DashboardLayout = () => {
   const { role } = useRole();
@@ -45,21 +46,28 @@ const DashboardLayout = () => {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <div className="flex min-h-full flex-col items-start bg-white shadow-sm is-drawer-close:w-14 is-drawer-open:w-64 ">
+        <div className="flex min-h-full flex-col items-start bg-white is-drawer-close:w-15 is-drawer-open:w-64 shadow-sm">
           {/* Sidebar content here */}
           <ul className="menu w-full grow space-y-1">
             {/* List item */}
 
             <li>
+              <Link to="/">
+                {" "}
+                <img className="w-10 h-8 " src={logoImg} />
+                <span className="is-drawer-close:hidden font-medium text-2xl">
+                  SwiftDrop
+                </span>
+              </Link>
+            </li>
+            <li>
               <Link
-                to="/"
+                to="/dashboard"
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                 data-tip="Homepage"
               >
                 {/* Home icon */}
-                {/* <GoHome className="size-6" />
-                 */}
-                {/* <Logo></Logo> */}
+                <GoHome className="size-6" />
                 <span className="is-drawer-close:hidden font-medium text-[16px]">
                   Home
                 </span>

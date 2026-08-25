@@ -29,12 +29,12 @@ const AdminDashboardHome = () => {
         </h2>
 
         <div className="overflow-x-auto p-4">
-          <div>
-            <div className="stats shadow-md">
+          <div className="flex">
+            <div className="stats shadow-md mx-auto ">
               {deliveryStatus.map((stat) => (
                 <div className="stat">
                   <div className="stat-figure text-secondary">
-                    <svg
+                    {/* <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
                       viewBox="0 0 24 24"
@@ -46,7 +46,7 @@ const AdminDashboardHome = () => {
                         strokeWidth="2"
                         d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                       ></path>
-                    </svg>
+                    </svg> */}
                   </div>
                   <div className="stat-title text-xl">{stat.status}</div>
                   <div className="stat-value text-primary">{stat.count}</div>
@@ -54,8 +54,9 @@ const AdminDashboardHome = () => {
               ))}
             </div>
           </div>
-          <div className="w-full h-[400px]">
+          <div className="w-full h-[400px] flex">
             <PieChart
+              className="mx-auto"
               style={{
                 width: "100%",
                 maxWidth: "500px",
@@ -70,7 +71,7 @@ const AdminDashboardHome = () => {
                 endAngle={0}
                 data={getPieChartData(deliveryStatus)}
                 cx="50%"
-                cy="100%"
+                cy="80%"
                 outerRadius="120%"
                 fill="#f3971b"
                 label

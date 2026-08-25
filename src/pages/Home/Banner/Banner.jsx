@@ -21,12 +21,6 @@ const Banner = () => {
             zero hassle. From personal packages to business shipments — we
             deliver on time, every time.
           </p>
-          <div className="flex gap-5 items-center ">
-            <button className="btn bg-primary border-none hover:bg-secondary hover:text-white">
-              Track Your Parcel
-            </button>
-            <button className="btn">Be A Rider</button>
-          </div>
         </div>
         <div className="flex-1">
           <div>
@@ -49,12 +43,6 @@ const Banner = () => {
             zero hassle. From personal packages to business shipments — we
             deliver on time, every time.
           </p>
-          <div className="flex gap-5 items-center ">
-            <button className="btn bg-primary border-none hover:bg-secondary hover:text-white">
-              Track Your Parcel
-            </button>
-            <button className="btn">Be A Rider</button>
-          </div>
         </div>
         <div className="">
           <div>
@@ -86,12 +74,6 @@ const Banner = () => {
             zero hassle. From personal packages to business shipments — we
             deliver on time, every time.
           </p>
-          <div className="flex gap-5 items-center ">
-            <button className="btn bg-primary border-none hover:bg-secondary hover:text-white">
-              Track Your Parcel
-            </button>
-            <button className="btn">Be A Rider</button>
-          </div>
         </div>
         <div className="">
           <div>
